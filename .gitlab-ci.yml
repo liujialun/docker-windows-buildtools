@@ -1,0 +1,15 @@
+image: docker:18
+
+stages:
+  - build_docker
+  
+build_docker:
+  stage: build_docker
+  image: docker:18
+  artifacts:
+    name: docker-windows-buildtools
+    paths:
+      - docker-windows-buildtools.tar.gz
+  script:
+    - docker build . -t docker-windows-buildtools:tlsc
+    - docker save docker-windowstools:tlsc |gzip > docker-windows-buildtools.tar.gz
